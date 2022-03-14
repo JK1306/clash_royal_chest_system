@@ -7,7 +7,7 @@ public class PlayerProfile : MonoBehaviour
     int coins;
     int gems;
     string playerName;
-    ChestSlot slot1,
+    public ChestSlot slot1,
                 slot2,
                 slot3,
                 slot4;

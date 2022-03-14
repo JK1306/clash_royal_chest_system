@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestSlot
+public class ChestView : MonoBehaviour
 {
-    Chest chest;
-    
 }
