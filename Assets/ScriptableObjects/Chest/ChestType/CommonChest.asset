@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 996d61ccdb8c0904eb86c14ee2202606, type: 3}
-  m_Name: EpicChest
+  m_Name: CommonChest
   m_EditorClassIdentifier: 
-  chestType: 2
-  reward:
-    coins:
-      min: 600
-      max: 800
-    gems:
-      min: 45
-      max: 60
-  timerMins: 60
+  chestType: 0
+  chest:
+    openTimer: 15
+    reward:
+      coins:
+        min: 100
+        max: 200
+      gems:
+        min: 10
+        max: 20
+  applyColor: {r: 0.9254902, g: 0.5444728, b: 0.039215688, a: 0}

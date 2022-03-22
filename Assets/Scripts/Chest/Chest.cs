@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿[System.Serializable]
 public class Chest
 {
+    [UnityEngine.SerializeField]
+    ChestType chestType;
+    [UnityEngine.SerializeField]
     float openTimer;
-    Reward reward;
+    public Reward reward;
 }

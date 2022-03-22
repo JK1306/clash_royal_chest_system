@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -87,3 +87,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c781cdc2046cfc4cb4c0a54e9f12830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chest:
+    chestType: 0
+    openTimer: 0
+    reward:
+      coins:
+        min: 0
+        max: 0
+      gems:
+        min: 0
+        max: 0
+  occupied: 0

@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: LegendaryChest
   m_EditorClassIdentifier: 
   chestType: 3
-  reward:
-    coins:
-      min: 1000
-      max: 1200
-    gems:
-      min: 80
-      max: 100
-  timerMins: 180
+  chest:
+    chestType: 3
+    openTimer: 180
+    reward:
+      coins:
+        min: 1000
+        max: 1200
+      gems:
+        min: 80
+        max: 100
+  applyColor: {r: 1, g: 0, b: 0, a: 0}

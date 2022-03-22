@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: RareChest
   m_EditorClassIdentifier: 
   chestType: 1
-  reward:
-    coins:
-      min: 300
-      max: 500
-    gems:
-      min: 20
-      max: 40
-  timerMins: 30
+  chest:
+    chestType: 1
+    openTimer: 30
+    reward:
+      coins:
+        min: 300
+        max: 500
+      gems:
+        min: 20
+        max: 40
+  applyColor: {r: 1, g: 0.9640316, b: 0, a: 0}
