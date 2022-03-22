@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,5 +18,10 @@ public class ChestView : MonoBehaviour
         if(gameObject.TryGetComponent(out Image image)){
             image.color = chestModel.applyColor;
         }
+    }
+
+    public StateManager GetStateManager()
+    {
+        return GetComponent<StateManager>();
     }
 }

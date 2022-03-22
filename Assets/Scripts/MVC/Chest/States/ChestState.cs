@@ -1,4 +1,4 @@
-﻿public enum ChestState
+﻿public enum ChestStates
 {
     Locked,
     UnLocking,
