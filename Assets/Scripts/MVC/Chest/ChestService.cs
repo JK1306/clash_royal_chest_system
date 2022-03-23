@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class ChestService : SingltonBehaviour<ChestService>
 {
     public ChestMasterScriptableObjects chestMasterScriptableObject;
-    [Tooltip("Panel to Manage Chest Clicks")]
-    public GameObject panel;
-    [Tooltip("Text to Display Message")]
-    public Text panelMsgDisplay;
     ChestController chestController;
+    [Tooltip("Chest Panel")]
+    public ChestPanelManager chestPanelManager;
 
     public ChestController SpawnChest(Transform spwaChest){
         chestController = new ChestController(chestMasterScriptableObject, spwaChest);
@@ -18,7 +16,7 @@ public class ChestService : SingltonBehaviour<ChestService>
     }
 
     public void DisplayPanel(string panelDisplayMsg){
-        panel.SetActive(true);
-        panelMsgDisplay.text = panelDisplayMsg;
+        chestPanelManager.EnableObject();
+        chestPanelManager.DisplayMessage(panelDisplayMsg);
     }
 }

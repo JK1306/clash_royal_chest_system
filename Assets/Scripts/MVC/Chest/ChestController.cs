@@ -16,6 +16,8 @@ public class ChestController
         this.chestView.transform.SetParent(spawnSlot);
     }
 
-    // void 
+    public void ManagePanel(){
+        ChestService.instance.DisplayPanel(stateManager.GetDisplayStatement());
+    }
 
 }

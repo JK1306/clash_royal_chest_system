@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class ChestLockedState : State
 {
-    public string GetMessage(){
-        return "Would you like to Open this Chest";
+    public ChestLockedState(ChestModel chestModel) : base(chestModel){}
+
+    public override void OnEnter()
+    {
+        this.chestState = ChestStates.Locked;
+    }
+    public override void OnAccept()
+    {
+        this.chestState = ChestStates.UnLocking;
+    }
+    public override void OnDecline()
+    {
+        this.chestState = ChestStates.Locked;
+    }
+    public override string DisplayText() => "Would you like to Open this Chest";
+
+    public override string ChestDisplayText()
+    {
+        return "Chest Locked";
     }
 }

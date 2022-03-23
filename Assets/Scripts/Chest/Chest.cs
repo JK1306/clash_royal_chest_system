@@ -6,4 +6,5 @@ public class Chest
     [UnityEngine.SerializeField]
     float openTimer;
     public Reward reward;
+    public float GetOpenTimer() => openTimer;
 }

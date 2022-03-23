@@ -1939,8 +1939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestMasterScriptableObject: {fileID: 11400000, guid: e70137df8e58ddc44ba5274657230cf8,
     type: 2}
-  panel: {fileID: 1244193645}
-  panelMsgDisplay: {fileID: 0}
+  chestPanelManager: {fileID: 1741096130}
 --- !u!1 &1620401882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2203,7 @@ GameObject:
   - component: {fileID: 1741096127}
   - component: {fileID: 1741096129}
   - component: {fileID: 1741096128}
+  - component: {fileID: 1741096130}
   m_Layer: 5
   m_Name: ChestManagePanel
   m_TagString: Untagged
@@ -2268,3 +2268,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741096126}
   m_CullTransparentMesh: 0
+--- !u!114 &1741096130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741096126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b8b8be56e832042ac425fffbba19d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statementDisplay: {fileID: 1020057720}
+  yesBtn: {fileID: 256176845}
+  noBtn: {fileID: 432107190}

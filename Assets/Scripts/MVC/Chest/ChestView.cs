@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class ChestView : MonoBehaviour
 {
-    public Text timerDisplay;
     ChestModel chestModel;
-
     public void setUpModel(ChestModel chestModel){
         this.chestModel = chestModel;
         applyColor();
@@ -23,5 +21,9 @@ public class ChestView : MonoBehaviour
     public StateManager GetStateManager()
     {
         return GetComponent<StateManager>();
+    }
+
+    public ChestModel GetChestModel(){
+        return chestModel;
     }
 }

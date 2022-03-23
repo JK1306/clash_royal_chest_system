@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08249e65721da374086c3b67fe7eed23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDisplay: {fileID: 1273879975685865817}
 --- !u!114 &8187329338638707838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d99abcec18ce404d9763ae9bd07f585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerDisplay: {fileID: 1273879975685865817}
+  currentState:
+    chestState: 0

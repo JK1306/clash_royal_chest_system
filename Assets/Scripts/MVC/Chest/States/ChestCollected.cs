@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ChestCollected : State
 {
-
+    public ChestCollected(ChestModel chestModel) : base(chestModel){}
 }
