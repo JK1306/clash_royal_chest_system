@@ -11,11 +11,11 @@ public class StateManager : MonoBehaviour
     public Text timerDisplay;
     [SerializeField]
     State currentState;
-    State lockedState,
-            unLockingState,
-            unLockedNotCollectedState,
-            colledted;
-    private void Awake() {
+    ChestLockedState lockedState;
+    ChestUnLockingState unLockingState;
+    ChestUnLockedNotCollected unLockedNotCollectedState;
+    ChestCollected colledted;
+    private void Start(){
         chestView = GetComponent<ChestView>();
         chestModel = chestView.GetChestModel();
 
@@ -36,13 +36,19 @@ public class StateManager : MonoBehaviour
         ChestPanelManager.noBtnClicked += NoButtonClicked;
     }
 
+    private void OnDisable() {
+        currentState.OnExit();
+        ChestPanelManager.yesBtnClicked -= YesButtonClicked;
+        ChestPanelManager.noBtnClicked -= NoButtonClicked;
+    }
+
     void YesButtonClicked(){
-        Debug.Log("yes Button CLicked");
+        // Debug.Log("yes Button CLicked");
         currentState.OnAccept();
     }
 
     void NoButtonClicked(){
-        Debug.Log("No Button CLicked");
+        // Debug.Log("No Button CLicked");
         currentState.OnDecline();
     }
 

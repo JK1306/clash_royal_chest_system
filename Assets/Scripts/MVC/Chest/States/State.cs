@@ -6,7 +6,6 @@ public class State
     protected ChestModel chestModel;
     public State(ChestModel chestModel)
     {
-        Debug.Log("Chest Model is set");
         this.chestModel = chestModel;
     }
     public virtual void OnAccept(){}

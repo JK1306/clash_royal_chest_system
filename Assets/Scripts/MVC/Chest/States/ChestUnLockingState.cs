@@ -7,23 +7,32 @@ using UnityEngine;
 public class ChestUnLockingState : State
 {
     float waitTime;
-    TimeSpan waitTimer;
+    int seconds;
     string returnString;
-    public ChestUnLockingState(ChestModel chestModel) : base(chestModel){}
+    bool runTimer;
+    public ChestUnLockingState(ChestModel chestModel) : base(chestModel){
+        returnString = waitTime.ToString();
+    }
 
     public override void OnEnter()
     {
-        if(base.chestModel == null){
-            Debug.Log("Chest Model is Not Set");
-        }
         waitTime = base.chestModel.chest.GetOpenTimer();
-        waitTimer = TimeSpan.FromMinutes(waitTime);
+        Debug.Log("Waiting Time from Models : "+waitTime);
 
         this.chestState = ChestStates.UnLocking;
+
+        runTimer = true;
+        seconds = 60;
+        ChestOpenTimeCountDown();
+    }
+
+    public override void OnExit()
+    {
+        runTimer = false;
     }
     public override void OnAccept()
     {
-        this.chestState = ChestStates.UnLocked_not_collected;
+        ChangeState();
     }
     public override void OnDecline()
     {
@@ -39,9 +48,19 @@ public class ChestUnLockingState : State
     }
 
     async void ChestOpenTimeCountDown(){
-        // if(waitTimer < TimeSpan.Zero) { return; }
-        returnString = string.Format("{0:00} {1:00}", waitTimer.TotalMinutes, waitTimer.TotalSeconds);
-        await Task.Delay(TimeSpan.FromSeconds(1));
-        waitTimer.Subtract(TimeSpan.FromSeconds(1));
+        while(waitTime > 0 && runTimer) {
+            returnString = waitTime.ToString()+" : "+seconds.ToString();
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            seconds--;
+            if(seconds <= 0){
+                seconds = 60;
+                waitTime--;
+            }
+        }
+        ChangeState();
+    }
+
+    void ChangeState(){
+        this.chestState = ChestStates.UnLocked_not_collected;
     }
 }
