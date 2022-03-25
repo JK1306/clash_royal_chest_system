@@ -7,7 +7,7 @@ public class ChestController
     public ChestController(ChestMasterScriptableObjects chestMaster, Transform spawnLocation){
         chestModel = new ChestModel(chestMaster.chestTypes.selectRandom<ChestTypeScriptableObject>());
         SpawnChest(chestMaster.chestView, spawnLocation);
-        this.chestView.setUpModel(chestModel);
+        this.chestView.setUpModel(chestModel, this);
         this.stateManager = this.chestView.GetStateManager();
     }
 
@@ -18,6 +18,11 @@ public class ChestController
 
     public void ManagePanel(){
         ChestService.instance.DisplayPanel(stateManager.GetDisplayStatement());
+    }
+
+    public void DestroyChest(){
+        Debug.Log("Destroyed CHest");
+        GameObject.Destroy(this.chestView.gameObject);
     }
 
 }

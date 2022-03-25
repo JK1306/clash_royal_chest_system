@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[Serializable]
 public class ChestUnLockingState : State
 {
     float waitTime;
     int seconds;
     string returnString;
+    [SerializeField]
     bool runTimer;
+    int gemCount;
     public ChestUnLockingState(ChestModel chestModel) : base(chestModel){
         returnString = waitTime.ToString();
     }
@@ -17,7 +20,7 @@ public class ChestUnLockingState : State
     public override void OnEnter()
     {
         waitTime = base.chestModel.chest.GetOpenTimer();
-        Debug.Log("Waiting Time from Models : "+waitTime);
+        // Debug.Log("Waiting Time from Models : "+waitTime);
 
         this.chestState = ChestStates.UnLocking;
 
@@ -32,7 +35,14 @@ public class ChestUnLockingState : State
     }
     public override void OnAccept()
     {
-        ChangeState();
+        if(PlayerProfile.instance == null){
+            Debug.Log("Player profile instance is null");
+        }
+        bool isReedemed = PlayerProfile.instance.RedeemGem(gemCount);
+        Debug.Log("Is Redeemed : "+isReedemed);
+        if(isReedemed){
+            ChangeState();
+        }
     }
     public override void OnDecline()
     {
@@ -40,7 +50,7 @@ public class ChestUnLockingState : State
     }
     public override string DisplayText()
     {
-        return "Would you like to UnLock Chest With the given Gem Value";
+        return "Would you like to UnLock Chest With "+GetGemsCountToUnlock()+" Gem Value";
     }
     public override string ChestDisplayText()
     {
@@ -62,5 +72,14 @@ public class ChestUnLockingState : State
 
     void ChangeState(){
         this.chestState = ChestStates.UnLocked_not_collected;
+    }
+
+    int GetGemsCountToUnlock(){
+        float waitTimeToGem = waitTime/10;
+        gemCount = (int)waitTimeToGem;
+        if((waitTimeToGem - gemCount) > 0){
+            gemCount++;
+        }
+        return gemCount;
     }
 }

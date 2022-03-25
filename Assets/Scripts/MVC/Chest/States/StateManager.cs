@@ -9,7 +9,7 @@ public class StateManager : MonoBehaviour
     ChestModel chestModel;
     ChestStates prevState;
     public Text timerDisplay;
-    [SerializeField]
+    [SerializeReference]
     State currentState;
     ChestLockedState lockedState;
     ChestUnLockingState unLockingState;
@@ -65,6 +65,7 @@ public class StateManager : MonoBehaviour
 
     void ChangeState(ChestStates nextState){
         currentState.OnExit();
+        Debug.Log("Next State : "+nextState);
         switch(nextState){
             case ChestStates.Locked:
                 currentState = lockedState;
@@ -77,7 +78,9 @@ public class StateManager : MonoBehaviour
                 break;
             case ChestStates.Collected:
                 currentState = colledted;
-                break;
+                currentState.OnEnter();
+                chestView.DestroyChest();
+                return;
         }
         currentState.OnEnter();
         prevState = currentState.chestState;

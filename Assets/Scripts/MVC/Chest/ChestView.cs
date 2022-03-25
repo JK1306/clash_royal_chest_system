@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class ChestView : MonoBehaviour
 {
     ChestModel chestModel;
-    public void setUpModel(ChestModel chestModel){
+    ChestController chestController;
+    public void setUpModel(ChestModel chestModel, ChestController chestController){
         this.chestModel = chestModel;
+        this.chestController = chestController;
         applyColor();
     }
 
@@ -25,5 +27,9 @@ public class ChestView : MonoBehaviour
 
     public ChestModel GetChestModel(){
         return chestModel;
+    }
+
+    public void DestroyChest(){
+        chestController.DestroyChest();
     }
 }
