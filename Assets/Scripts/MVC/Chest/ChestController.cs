@@ -3,7 +3,7 @@ public class ChestController
 {
     ChestView chestView;
     ChestModel chestModel;
-    StateManager stateManager;
+    public StateManager stateManager { get; private set;}
     ChestPanelManager chestPanelManager;
     public ChestController(ChestMasterScriptableObjects chestMaster, Transform spawnLocation, ChestPanelManager chestPanelManager){
         chestModel = new ChestModel(chestMaster.chestTypes.selectRandom<ChestTypeScriptableObject>());
@@ -28,7 +28,6 @@ public class ChestController
     }
 
     public void ManagePanel(){
-        // ChestService.instance.DisplayPanel(stateManager.GetDisplayStatement());
         chestPanelManager.EnableObject(this);
         chestPanelManager.DisplayMessage(stateManager.GetDisplayStatement());
     }

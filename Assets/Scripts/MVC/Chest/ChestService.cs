@@ -12,9 +12,4 @@ public class ChestService : SingltonBehaviour<ChestService>
         ChestController chestController = new ChestController(chestMasterScriptableObject, spwaChest, chestPanelManager);
         return chestController;
     }
-
-    // public void DisplayPanel(string panelDisplayMsg){
-    //     chestPanelManager.EnableObject();
-    //     chestPanelManager.DisplayMessage(panelDisplayMsg);
-    // }
 }

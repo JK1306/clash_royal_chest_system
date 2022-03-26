@@ -34,6 +34,10 @@ public class PlayerProfile : SingltonBehaviour<PlayerProfile>
         chestSlotManager.AllocateChest();
     }
 
+    public void DeallocateChest(){
+        chestSlotManager.DeallocateChest();
+    }
+
     private void OnDisable() {
         spawnButton.onClick.RemoveListener(SpawnChest);
         notificationPanelButton.onClick.RemoveListener(DisableNoitificationPanel);

@@ -10,6 +10,7 @@ public class ChestCollected : State
     {
         PlayerProfile.instance.AddCoin(this.chestModel.chest.reward.getCoin());
         PlayerProfile.instance.AddGem(this.chestModel.chest.reward.getGem());
-        this.chestState = ChestStates.Collected;
-    }    
+        this.chestState = ChestStates.None;
+        PlayerProfile.instance.DeallocateChest();
+    }
 }
