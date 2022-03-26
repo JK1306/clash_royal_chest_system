@@ -15,6 +15,6 @@ public class ChestSlot : MonoBehaviour
     }
 
     void ActivateChest(){
-        chest.ManagePanel();
+        this.chest.ManagePanel();
     }
 }
