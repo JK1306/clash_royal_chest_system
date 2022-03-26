@@ -32,4 +32,9 @@ public class ChestView : MonoBehaviour
     public void DestroyChest(){
         chestController.DestroyChest();
     }
+
+    private void OnDestroy() {
+        Debug.Log("came to Ondestroy");
+        chestController = null;
+    }
 }

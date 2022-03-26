@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class ChestPanelManager : MonoBehaviour
 {
+    ChestController chestController;
     [SerializeField]
     private Text statementDisplay;
     public Button yesBtn,
                     noBtn;
-    public static event Action yesBtnClicked;
-    public static event Action noBtnClicked;
+    public static event Action<ChestController> yesBtnClicked;
+    public static event Action<ChestController> noBtnClicked;
 
     private void OnEnable(){
         yesBtn.onClick.AddListener(Accepted);
@@ -17,12 +18,12 @@ public class ChestPanelManager : MonoBehaviour
     }
 
     void Accepted(){
-        yesBtnClicked?.Invoke();
+        yesBtnClicked?.Invoke(chestController);
         DisableObject();
     }
 
     void Rejected(){
-        noBtnClicked?.Invoke();
+        noBtnClicked?.Invoke(chestController);
         DisableObject();
     }
 
@@ -35,7 +36,8 @@ public class ChestPanelManager : MonoBehaviour
         statementDisplay.text = displayValue;
     }
 
-    public void EnableObject(){
+    public void EnableObject(ChestController chestController){
+        this.chestController = chestController;
         gameObject.SetActive(true);
     }
 

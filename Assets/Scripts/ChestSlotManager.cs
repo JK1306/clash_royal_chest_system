@@ -18,14 +18,15 @@ public class ChestSlotManager : MonoBehaviour
         return null;
     }
 
-    public void AllocateChest(ChestSlot chestSlot, ChestController chest){
-        chestSlot.chest = chest;
-        chestSlot.occupied = true;
-        // spawnChest.gameObject.transform.position = chestSlot.gameObject.post
-        // ChestSlot chestSlot = GetSlot();
-        // if(chestSlot != null){
-        //     chestSlot.chest = spawnChest;
-        //     chestSlot.occupied = true;
-        // }
+    public void AllocateChest(){
+        ChestSlot availableSlot = GetSlot();
+        if(availableSlot != null){
+            ChestController chestController =  ChestService.instance.SpawnChest(availableSlot.gameObject.transform);
+            // chestSlotManager.AllocateChest(availableSlot, chestController);
+            availableSlot.chest = chestController;
+            availableSlot.occupied = true;
+        }else{
+            Debug.Log("All Slots are Allocated");
+        }
     }
 }

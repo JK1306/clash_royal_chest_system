@@ -31,13 +31,7 @@ public class PlayerProfile : SingltonBehaviour<PlayerProfile>
     }
 
     void SpawnChest(){
-        ChestSlot availableSlot = chestSlotManager.GetSlot();
-        if(availableSlot != null){
-            ChestController chestController =  ChestService.instance.SpawnChest(availableSlot.gameObject.transform);
-            chestSlotManager.AllocateChest(availableSlot, chestController);
-        }else{
-            Debug.Log("All Slots are Allocated");
-        }
+        chestSlotManager.AllocateChest();
     }
 
     private void OnDisable() {

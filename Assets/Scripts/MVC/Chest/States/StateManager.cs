@@ -27,28 +27,17 @@ public class StateManager : MonoBehaviour
         currentState = lockedState;
         currentState.OnEnter();
         prevState = lockedState.chestState;
-
-        // timerDisplay = GetComponent<Text>();
-    }
-
-    private void OnEnable() {
-        ChestPanelManager.yesBtnClicked += YesButtonClicked;
-        ChestPanelManager.noBtnClicked += NoButtonClicked;
     }
 
     private void OnDisable() {
         currentState.OnExit();
-        ChestPanelManager.yesBtnClicked -= YesButtonClicked;
-        ChestPanelManager.noBtnClicked -= NoButtonClicked;
     }
 
-    void YesButtonClicked(){
-        // Debug.Log("yes Button CLicked");
+    public void YesButtonClicked(){
         currentState.OnAccept();
     }
 
-    void NoButtonClicked(){
-        // Debug.Log("No Button CLicked");
+    public void NoButtonClicked(){
         currentState.OnDecline();
     }
 
@@ -65,7 +54,7 @@ public class StateManager : MonoBehaviour
 
     void ChangeState(ChestStates nextState){
         currentState.OnExit();
-        Debug.Log("Next State : "+nextState);
+        // Debug.Log("Next State : "+nextState);
         switch(nextState){
             case ChestStates.Locked:
                 currentState = lockedState;

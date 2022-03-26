@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
 public class ChestController
 {
-    ChestModel chestModel;
     ChestView chestView;
+    ChestModel chestModel;
     StateManager stateManager;
-    public ChestController(ChestMasterScriptableObjects chestMaster, Transform spawnLocation){
+    ChestPanelManager chestPanelManager;
+    public ChestController(ChestMasterScriptableObjects chestMaster, Transform spawnLocation, ChestPanelManager chestPanelManager){
         chestModel = new ChestModel(chestMaster.chestTypes.selectRandom<ChestTypeScriptableObject>());
         SpawnChest(chestMaster.chestView, spawnLocation);
         this.chestView.setUpModel(chestModel, this);
         this.stateManager = this.chestView.GetStateManager();
+        this.chestPanelManager = chestPanelManager;
+
+        ChestPanelManager.yesBtnClicked += YesButtonClicked;
+        ChestPanelManager.noBtnClicked += NoButtonClicked;
+    }
+
+    ~ChestController(){
+        Debug.Log("Destructor is called");
+        ChestPanelManager.yesBtnClicked -= YesButtonClicked;
+        ChestPanelManager.noBtnClicked -= NoButtonClicked;
     }
 
     void SpawnChest(ChestView chestView, Transform spawnSlot){
@@ -17,7 +28,9 @@ public class ChestController
     }
 
     public void ManagePanel(){
-        ChestService.instance.DisplayPanel(stateManager.GetDisplayStatement());
+        // ChestService.instance.DisplayPanel(stateManager.GetDisplayStatement());
+        chestPanelManager.EnableObject(this);
+        chestPanelManager.DisplayMessage(stateManager.GetDisplayStatement());
     }
 
     public void DestroyChest(){
@@ -25,4 +38,19 @@ public class ChestController
         GameObject.Destroy(this.chestView.gameObject);
     }
 
+    void YesButtonClicked(ChestController chestController){
+        if(this.Equals(chestController)){
+            Debug.Log("Same Object");
+            Debug.Log("Yes Button CLicked");
+            stateManager.YesButtonClicked();
+        }
+    }
+
+    void NoButtonClicked(ChestController chestController){
+        if(this.Equals(chestController)){
+            Debug.Log("Same Object");
+            Debug.Log("No Button Clicked");
+            stateManager.NoButtonClicked();
+        }
+    }
 }
